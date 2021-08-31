@@ -5,10 +5,10 @@ const auth = async (req, res, next) => {
   if (!jwtToken) return res.status(400).send("Authorization denied: No token");
 
   jwtToken = jwtToken.split(" ")[1];
-  if (!jwtToken) return res.status(400).send("uthorization denied: No token");
+  if (!jwtToken) return res.status(400).send("Authorization denied: No token");
 
   try {
-    let payload = await jwt.verify(jwtToken, process.env.SECRET_KET_JWT);
+    let payload = await jwt.verify(jwtToken, process.env.SECRET_KEY_JWT);
     req.user = payload;
     next();
   } catch (e) {
