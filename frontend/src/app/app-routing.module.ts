@@ -16,7 +16,7 @@ const routes: Routes = [
     component: ListPostComponent,
   },
   {
-    path: 'registerPost',
+    path: 'savePost',
     component: SavePostComponent,
   },
   {

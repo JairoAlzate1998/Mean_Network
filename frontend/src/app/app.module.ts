@@ -16,14 +16,14 @@ import { UserService } from "./services/user.service";
 import { TokenInterceptorService } from "./services/token-interceptor.service";
 import { AuthGuard } from "./guard/auth.guard";
 
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent, LoginComponent, RegisterComponent, FooterComponent, SavePostComponent, ListPostComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-  ],
+  imports: [BrowserModule,AppRoutingModule,BrowserAnimationsModule,HttpClientModule,FormsModule,ReactiveFormsModule,MatToolbarModule,MatButtonModule],
   providers: [
     BoardService,
     UserService,
