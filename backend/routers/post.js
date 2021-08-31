@@ -6,5 +6,12 @@ const ValidateUser = require("../middleware/validateUser");
 
 router.post("/registerPost", Auth, ValidateUser, PostController.registerPost);
 router.get("/listPost", Auth, ValidateUser, PostController.listPost);
+router.put("/updatePost", Auth, ValidateUser, PostController.updatePost);
+router.delete(
+  "/deletePost/:_id",
+  Auth,
+  ValidateUser,
+  PostController.deletePost
+);
 
 module.exports = router;

@@ -1,1 +1,51 @@
-<p>list-post works!</p>
+<div class="bgComponent">
+    <div class="accordion_display">
+      <div class="accordion_size">
+        <mat-accordion multi="true" *ngIf="postData.length">
+          <mat-expansion-panel *ngFor="let post of postData" hideToggle="false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <span>{{ post.text }}</span>
+                <span class="spacer"></span>
+                <button
+                  class="btnActive"
+                  *ngIf="post.status == 'active'"
+                  mat-raised-button
+                >
+                  {{ post.status }}
+                </button>
+                <button
+                  class="btnInnactive"
+                  *ngIf="post.status == 'innactive'"
+                  mat-raised-button
+                >
+                  {{ post.status }}
+                </button>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-action-row>
+              <button
+                class="btnSelectActive"
+                mat-button
+                (click)="updatePost(post, 'active')"
+              >
+                Active
+              </button>
+              <button
+                class="btnSelectInnactive"
+                mat-button
+                (click)="updatePost(post, 'innactive')"
+              >
+                Innactive
+              </button>
+              <span class="spacer"></span>
+              <mat-icon color="primary" (click)="deletePost(post)"
+                >delete</mat-icon
+              >
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+

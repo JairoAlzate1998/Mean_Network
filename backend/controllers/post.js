@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const mongoose = require("mongoose")
 
 const registerPost = async (req, res) => {
     if (!req.body.text)
@@ -22,4 +23,29 @@ const listPost = async (req, res) => {
   return res.status(200).send({ post });
 };
 
-module.exports = { registerPost, listPost };
+const updatePost = async (req, res) => {
+  let validId = mongoose.Types.ObjectId.isValid(req.body._id);
+  if (!validId) return res.status(400).send("Invalid id");
+
+  if (!req.body._id || !req.body.status)
+    return res.status(400).send("Incomplete data");
+
+  let post = await Post.findByIdAndUpdate(req.body._id, {
+    userId: req.user._id,
+    status: req.body.status,
+  });
+
+  if (!post) return res.status(400).send("Post not found");
+  return res.status(200).send({ post });
+}
+
+const deletePost = async (req, res) => {
+  let validId = mongoose.Types.ObjectId.isValid(req.params._id);
+  if (!validId) return res.status(400).send("Invalid id");
+
+  let post = await Post.findByIdAndDelete(req.params._id);
+  if (!post) return res.status(400).send("Post not found");
+  return res.status(200).send({ message: "Post deleted"});
+};
+
+module.exports = { registerPost, listPost, updatePost, deletePost };
